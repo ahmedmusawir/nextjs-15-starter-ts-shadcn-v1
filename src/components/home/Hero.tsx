@@ -3,13 +3,13 @@
 import Link from "next/link";
 
 const Hero = () => {
-
   return (
     <div className="bg-gray-100">
       <div className="relative isolate px-6 lg:px-8">
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+          className="absolute inset-x-0 transform-gpu overflow-hidden blur-3xl"
+          // className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
         >
           <div
             style={{
@@ -38,14 +38,13 @@ const Hero = () => {
             </p>
 
             <div className="mt-10 flex items-center justify-center gap-x-6">
-                <Link
-                  href="/auth"
-                  className="rounded-md bg-indigo-600 px-8 py-4 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Get started
-                </Link>
+              <Link
+                href="/auth"
+                className="rounded-md bg-indigo-600 px-8 py-4 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Get started
+              </Link>
             </div>
-           
           </div>
         </div>
         <div
