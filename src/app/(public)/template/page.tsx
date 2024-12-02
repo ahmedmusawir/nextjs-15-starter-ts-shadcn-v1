@@ -1,7 +1,7 @@
 import TemplatePageContent from "./TemplatePageContent";
 
-const Demo = () => {
+const Template = () => {
   return <TemplatePageContent />;
 };
 
-export default Demo;
+export default Template;

@@ -1,3 +1,5 @@
+"use client";
+
 import { products } from "@/demo-data/data";
 import { createContext, ReactNode, useContext } from "react";
 

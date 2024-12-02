@@ -21,6 +21,8 @@ import Navbar from "@/components/global/Navbar";
 import Main from "@/components/common/Main";
 import Footer from "@/components/global/Footer";
 import { CartProvider } from "@/contexts/CartContext";
+import { ProductProvider } from "@/contexts/ProductContext";
+import Cart from "@/components/cart/Cart";
 // import { Toaster } from "@/components/ui/toaster";
 // import { ThemeProvider } from "./providers/ThemeProvider";
 
@@ -37,21 +39,20 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <CartProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          <div className="flex flex-col min-h-screen">
-            <Navbar />
-            <Main className="flex flex-col">
-              {children
-                ? children
-                : "This is a Layout container. Must have children"}
-            </Main>
-            <Footer />
-          </div>
-          {/* <Toaster /> */}
-        </body>
-      </html>
-    </CartProvider>
+    <html lang="en">
+      <body className={inter.className}>
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <Main className="flex flex-col">
+            {children
+              ? children
+              : "This is a Layout container. Must have children"}
+          </Main>
+          <Footer />
+          <Cart />
+        </div>
+        {/* <Toaster /> */}
+      </body>
+    </html>
   );
 }
