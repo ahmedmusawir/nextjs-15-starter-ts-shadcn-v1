@@ -1,54 +1,54 @@
 import { create } from "zustand";
-import { createJSONStorage, persist, PersistOptions } from "zustand/middleware"; // Import `PersistOptions` for proper typing
+import { persist, createJSONStorage } from "zustand/middleware";
 import { products } from "@/demo-data/data";
 import { Product } from "@/types/product";
 
+// Type for individual cart items
 interface CartItem {
   id: number;
   quantity: number;
 }
 
+// Type for cart details (cart item + product details)
 interface CartDetail {
   id: number;
   quantity: number;
   productDetails: Product;
 }
 
+// Type for the Zustand store
 interface CartStore {
-  cartItems: CartItem[];
-  isCartOpen: boolean;
-  setIsCartOpen: (isOpen: boolean) => void;
-  setCartItems: (newCartItems: CartItem[]) => void;
-  getItemQuantity: (itemId: number) => number;
-  increaseCartQuantity: (itemId: number) => void;
-  decreaseCartQuantity: (itemId: number) => void;
-  removeFromCart: (itemId: number) => void;
-  clearCart: () => void;
-  cartDetails: () => CartDetail[];
-  subtotal: () => number;
+  cartItems: CartItem[]; // The list of items in the cart
+  isCartOpen: boolean; // Whether the cart drawer is open
+  setIsCartOpen: (isOpen: boolean) => void; // Toggle the cart drawer
+  setCartItems: (newCartItems: CartItem[]) => void; // Directly update cart items
+  getItemQuantity: (itemId: number) => number; // Get the quantity of a specific item
+  increaseCartQuantity: (itemId: number) => void; // Increment the quantity of a specific item
+  decreaseCartQuantity: (itemId: number) => void; // Decrement the quantity of a specific item
+  removeFromCart: (itemId: number) => void; // Remove an item from the cart
+  clearCart: () => void; // Clear the entire cart
+  cartDetails: () => CartDetail[]; // Get detailed cart items with product info
+  subtotal: () => number; // Calculate the subtotal of all items in the cart
 }
 
-// Type for Zustand Persist Middleware
-type CartStorePersist = CartStore & {
-  cartItems: CartItem[];
-};
-
-// Properly typed `persist` middleware
+// Define the Zustand store with persist middleware
 export const useCartStore = create<CartStore>()(
-  persist<CartStorePersist>(
+  persist(
     (set, get) => ({
-      // State
+      // Array to hold cart items (persisted)
       cartItems: [],
+      // Boolean to track if the cart is open
       isCartOpen: false,
 
-      // Actions
+      // Toggle the cart open/close state
       setIsCartOpen: (isOpen) => set({ isCartOpen: isOpen }),
+      // Replace the current cart items with a new list
       setCartItems: (newCartItems: CartItem[]) =>
         set({ cartItems: newCartItems }),
-
+      // Get the quantity of an item by ID
       getItemQuantity: (itemId) =>
         get().cartItems.find((item) => item.id === itemId)?.quantity || 0,
-
+      // Increase the quantity of an item in the cart
       increaseCartQuantity: (itemId) =>
         set((state) => {
           const existingItem = state.cartItems.find(
@@ -68,17 +68,19 @@ export const useCartStore = create<CartStore>()(
             };
           }
         }),
-
+      // Decrease the quantity of an item in the cart
       decreaseCartQuantity: (itemId) =>
         set((state) => {
           const existingItem = state.cartItems.find(
             (item) => item.id === itemId
           );
+          // If the quantity is 1, remove the item from the cart
           if (existingItem?.quantity === 1) {
             return {
               cartItems: state.cartItems.filter((item) => item.id !== itemId),
             };
           } else {
+            // Otherwise, decrement its quantity
             return {
               cartItems: state.cartItems.map((item) =>
                 item.id === itemId
@@ -88,15 +90,14 @@ export const useCartStore = create<CartStore>()(
             };
           }
         }),
-
+      // Remove an item from the cart entirely
       removeFromCart: (itemId) =>
         set((state) => ({
           cartItems: state.cartItems.filter((item) => item.id !== itemId),
         })),
-
+      // Clear all items from the cart
       clearCart: () => set({ cartItems: [] }),
-
-      // Derived state as functions
+      // Get detailed information about each cart item (product details)
       cartDetails: () => {
         const cartItems = get().cartItems || [];
         return cartItems.map((cartItem) => {
@@ -106,7 +107,7 @@ export const useCartStore = create<CartStore>()(
           return { ...cartItem, productDetails: product };
         });
       },
-
+      // Calculate the subtotal of all items in the cart
       subtotal: () => {
         const cartItems = get().cartItems || [];
         return parseFloat(
@@ -124,9 +125,9 @@ export const useCartStore = create<CartStore>()(
       },
     }),
     {
-      name: "cart-storage", // Key in localStorage
-      storage: createJSONStorage(() => sessionStorage),
-      partialize: (state) => ({ cartItems: state.cartItems }), // Only persist `cartItems`
-    } as PersistOptions<CartStorePersist>
+      name: "cart-storage", // Name of the localStorage key
+      storage: createJSONStorage(() => localStorage), // Explicitly define the storage mechanism
+      partialize: (state) => ({ cartItems: state.cartItems }), // Persist only the cartItems
+    }
   )
 );

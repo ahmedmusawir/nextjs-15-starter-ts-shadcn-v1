@@ -20,6 +20,8 @@ interface CartDetail {
 interface CartStore {
   cartItems: CartItem[]; // The list of items in the cart
   isCartOpen: boolean; // Whether the cart drawer is open
+  isLoading: boolean; // To check the loading state
+  setIsLoading: (loading: boolean) => void; // To Set loading state
   setIsCartOpen: (isOpen: boolean) => void; // Toggle the cart drawer
   setCartItems: (newCartItems: CartItem[]) => void; // Directly update cart items
   getItemQuantity: (itemId: number) => number; // Get the quantity of a specific item
@@ -39,6 +41,8 @@ export const useCartStore = create<CartStore>()(
       cartItems: [],
       // Boolean to track if the cart is open
       isCartOpen: false,
+      isLoading: true, // Initial state is loading
+      setIsLoading: (loading) => set({ isLoading: loading }),
 
       // Toggle the cart open/close state
       setIsCartOpen: (isOpen) => set({ isCartOpen: isOpen }),
@@ -126,6 +130,9 @@ export const useCartStore = create<CartStore>()(
     }),
     {
       name: "cart-storage", // Name of the localStorage key
+      onRehydrateStorage: () => (state) => {
+        state?.setIsLoading(false); // Hydration is complete
+      },
       storage: createJSONStorage(() => localStorage), // Explicitly define the storage mechanism
       partialize: (state) => ({ cartItems: state.cartItems }), // Persist only the cartItems
     }

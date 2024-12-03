@@ -9,7 +9,6 @@ import {
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import { useCartStore } from "@/store/useCartStore";
-import Link from "next/link";
 
 const Cart = () => {
   const router = useRouter();
@@ -161,16 +160,12 @@ const Cart = () => {
                     <p>${subtotal()}</p>
                   </div>
                   <div className="mt-6">
-                    <Link
-                      href={cartDetails().length > 0 ? "/checkout" : "#"}
-                      className={`flex items-center justify-center rounded-md px-6 py-3 text-base font-medium shadow-sm ${
-                        cartDetails().length > 0
-                          ? "bg-indigo-600 text-white hover:bg-indigo-700 border border-transparent"
-                          : "bg-gray-300 text-gray-500 border border-gray-400 cursor-not-allowed"
-                      }`}
+                    <button
+                      type="button"
+                      className="flex items-center justify-center rounded-md bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                     >
                       Checkout
-                    </Link>
+                    </button>
                   </div>
                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                     <p>
