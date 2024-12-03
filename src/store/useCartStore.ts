@@ -90,12 +90,16 @@ export const useCartStore = create<CartStore>((set, get) => ({
 
   subtotal: () => {
     const cartItems = get().cartItems || [];
-    return cartItems.reduce((acc, cartItem) => {
-      const product = products.find((p) => p.id === cartItem.id);
-      if (!product) return acc;
-      return (
-        acc + parseFloat(product.price.replace("$", "")) * cartItem.quantity
-      );
-    }, 0);
+    return parseFloat(
+      cartItems
+        .reduce((acc, cartItem) => {
+          const product = products.find((p) => p.id === cartItem.id);
+          if (!product) return acc;
+          return (
+            acc + parseFloat(product.price.replace("$", "")) * cartItem.quantity
+          );
+        }, 0)
+        .toFixed(2)
+    );
   },
 }));

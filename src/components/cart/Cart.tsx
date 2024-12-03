@@ -23,7 +23,7 @@ const Cart = () => {
     setCartItems,
   } = useCartStore();
 
-  console.log("CART DETAILS (/comp/cart)", cartDetails);
+  // console.log("CART DETAILS (/comp/cart)", cartDetails);
 
   // Handle quantity changes
   const handleQuantityChange = (itemId: number, newQuantity: number) => {
@@ -157,8 +157,7 @@ const Cart = () => {
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>Subtotal</p>
-                    {/* <p>${subtotal}</p> */}
-                    {/* <p>${subtotal.toFixed(2)}</p> */}
+                    <p>${subtotal()}</p>
                   </div>
                   <div className="mt-6">
                     <button

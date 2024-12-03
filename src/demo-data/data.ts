@@ -3,7 +3,7 @@ export const products = [
     id: 1,
     name: "Diner For 2",
     color: "Mexican",
-    price: "$75",
+    price: "$75.98",
     description:
       "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.product/1",
     imageSrc:
@@ -18,7 +18,7 @@ export const products = [
     id: 2,
     name: "Lobster Dinner",
     color: "Fine Dining",
-    price: "$65",
+    price: "$65.99",
     description:
       "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
     imageSrc:
@@ -33,7 +33,7 @@ export const products = [
     id: 3,
     name: "Shechuan Dimsum",
     color: "Asian",
-    price: "$25",
+    price: "$25.99",
     description:
       "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
     imageSrc:
@@ -48,7 +48,7 @@ export const products = [
     id: 4,
     name: "Grilled Lamb Shank",
     color: "Fine Dining",
-    price: "$35",
+    price: "$35.39",
     description:
       "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
     imageSrc:
@@ -63,7 +63,7 @@ export const products = [
     id: 5,
     name: "Chow Pow",
     color: "Asian",
-    price: "$30",
+    price: "$30.29",
     description:
       "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
     imageSrc:
@@ -78,7 +78,7 @@ export const products = [
     id: 6,
     name: "Vegi Lovers Beef",
     color: "Italian",
-    price: "$25",
+    price: "$25.98",
     description:
       "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
     imageSrc:
@@ -93,7 +93,7 @@ export const products = [
     id: 7,
     name: "Mumbo Jumbo",
     color: "African",
-    price: "$25",
+    price: "$25.24",
     description:
       "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
     imageSrc:
@@ -108,7 +108,7 @@ export const products = [
     id: 8,
     name: "Beef Wellington",
     color: "Fine Dining",
-    price: "$45",
+    price: "$45.31",
     description:
       "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
     imageSrc:
