@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 const Hero = () => {
   return (
@@ -8,7 +9,7 @@ const Hero = () => {
       <div className="relative isolate px-6 lg:px-8">
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 transform-gpu overflow-hidden blur-3xl"
+          className="absolute inset-x-0 transform-gpu overflow-hidden blur-3xl -z-10"
           // className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
         >
           <div
@@ -39,10 +40,10 @@ const Hero = () => {
 
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
-                href="/auth"
+                href="/shop"
                 className="rounded-md bg-indigo-600 px-8 py-4 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Get started
+                Get Started
               </Link>
             </div>
           </div>

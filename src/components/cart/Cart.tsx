@@ -10,6 +10,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import { useCartStore } from "@/store/useCartStore";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 const Cart = () => {
   const router = useRouter();
@@ -85,7 +86,7 @@ const Cart = () => {
                         role="list"
                         className="-my-6 divide-y divide-gray-200"
                       >
-                        {cartDetails.length === 0 && (
+                        {cartDetails().length === 0 && (
                           <h3 className="mt-12">The Shopping Cart is empty!</h3>
                         )}
                         {cartDetails().map((cartItem) => (
@@ -170,6 +171,16 @@ const Cart = () => {
                       }`}
                     >
                       Checkout
+                    </Link>
+                    <Link
+                      href={cartDetails().length > 0 ? "/cart" : "#"}
+                      className={`flex items-center justify-center rounded-md px-6 py-3 text-base font-medium shadow-sm mt-5 ${
+                        cartDetails().length > 0
+                          ? "bg-purple-600 text-white hover:bg-indigo-700 border border-transparent"
+                          : "bg-gray-300 text-gray-500 border border-gray-400 cursor-not-allowed"
+                      }`}
+                    >
+                      Cart Page
                     </Link>
                   </div>
                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">

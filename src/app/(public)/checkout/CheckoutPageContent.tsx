@@ -10,6 +10,8 @@ import {
 import { useEffect, useState } from "react";
 import Spinner from "@/components/common/Spinner";
 import { useCartStore } from "@/store/useCartStore";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const deliveryMethods = [
   {
@@ -27,6 +29,7 @@ const paymentMethods = [
 ];
 
 const CheckoutPageContent = () => {
+  const router = useRouter();
   const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState(
     deliveryMethods[0]
   );
@@ -42,8 +45,7 @@ const CheckoutPageContent = () => {
 
   const cartData = cartDetails() || [];
 
-  // Close the cart when the checkout page is loaded
-  // Close the cart when the checkout page is loaded
+  // Closes the sidebar Cart Slide
   useEffect(() => {
     setIsCartOpen(false);
   }, [setIsCartOpen]); // This runs once when the component mounts
@@ -60,6 +62,16 @@ const CheckoutPageContent = () => {
     }
   };
 
+  // Redirect to shop if cart is empty
+  const handleRemoveCartItem = (id: number) => {
+    removeFromCart(id);
+    // console.log("Cart Item Count: [CheckoutPageContent]", cartDetails.length);
+    if (cartDetails().length === 0) {
+      router.push("/shop");
+    }
+  };
+
+  // Makes sure Zustand states are loaded
   if (isLoading) {
     return (
       <div>
@@ -477,7 +489,7 @@ const CheckoutPageContent = () => {
                               <button
                                 type="button"
                                 className="-m-2.5 flex items-center justify-center bg-white p-2.5 text-gray-400 hover:text-gray-500"
-                                onClick={() => removeFromCart(product.id)}
+                                onClick={() => handleRemoveCartItem(product.id)}
                               >
                                 <span className="sr-only">Remove</span>
                                 <TrashIcon className="h-5 w-5" />
@@ -539,12 +551,14 @@ const CheckoutPageContent = () => {
                   </div>
                 </dl>
                 <div className="px-4 py-6">
-                  <button
-                    type="submit"
-                    className="w-full rounded-md bg-indigo-600 px-4 py-3 text-base font-medium text-white hover:bg-indigo-700"
-                  >
-                    Confirm order
-                  </button>
+                  <Link href={"/thankyou"}>
+                    <div
+                      // type="submit"
+                      className="w-full text-center rounded-md bg-indigo-600 px-4 py-3 text-base font-medium text-white hover:bg-indigo-700"
+                    >
+                      Confirm order
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -556,6 +570,3 @@ const CheckoutPageContent = () => {
 };
 
 export default CheckoutPageContent;
-function setIsCartOpen(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}

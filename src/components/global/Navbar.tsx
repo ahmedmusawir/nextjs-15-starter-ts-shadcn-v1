@@ -14,9 +14,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { usePathname } from "next/navigation";
 import { MenuIcon } from "lucide-react";
+import { ShoppingBagIcon } from "@heroicons/react/24/outline";
+import { useCartStore } from "@/store/useCartStore";
+import Spinner from "../common/Spinner";
 
 const Navbar = () => {
   const pathname = usePathname();
+  // Access Zustand store
+  const { cartDetails, isLoading } = useCartStore();
+  const cartItemCount = cartDetails().length;
+  // console.log("Cart Item Count [Navbar]", cartItemCount);
 
   interface NavLinkProps {
     href: string;
@@ -41,6 +48,14 @@ const Navbar = () => {
     );
   };
 
+  if (isLoading) {
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
+  }
+
   return (
     <div className="bg-slate-700 dark:bg-slate-700 py-2 px-5 flex justify-between">
       <Link href={"/"}>
@@ -56,7 +71,6 @@ const Navbar = () => {
 
       {/* NAVIGATION */}
       <nav className="hidden sm:ml-6 sm:flex flex-grow justify-center items-center">
-        {/* <NavLink href="/members-dashboard">Members' Portal</NavLink> */}
         <NavLink href="/shop">Shop</NavLink>
         <NavLink href="/admin-dashboard">Admin</NavLink>
         <NavLink href="/customer-dashboard">Customer</NavLink>
@@ -68,7 +82,20 @@ const Navbar = () => {
       <div className="flex items-center">
         <span className="mr-3 text-white">fake-user@email.com</span>
         {/* {user && <span className="mr-3 text-white">{user.email}</span>} */}
-
+        {/* SHOPPING BAG ICON */}
+        <div className="ml-4 flow-root lg:ml-6">
+          <Link href="/cart" className="group -m-2 flex items-center p-2">
+            <ShoppingBagIcon
+              aria-hidden="true"
+              className="size-8 shrink-0 text-gray-300 group-hover:text-gray-50"
+            />
+            <span className="ml-1 mr-3 text-lg font-medium text-gray-300 group-hover:text-gray-50">
+              {cartItemCount}
+            </span>
+            <span className="sr-only">items in cart, view bag</span>
+          </Link>
+        </div>
+        {/* DROP DOWN MENU */}
         <DropdownMenu>
           <DropdownMenuTrigger>
             {/* <button className="text-gray-500 pt-1"> */}

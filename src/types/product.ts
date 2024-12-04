@@ -3,6 +3,8 @@ export interface Product {
   name: string;
   color: string;
   price: string;
+  inStock: boolean;
+  leadTime: string;
   description: string;
   imageSrc: string;
   imageAlt: string;

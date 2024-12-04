@@ -1,15 +1,14 @@
-interface CartItem {
+import { Product } from "./product";
+
+// Type for individual cart items
+export interface CartItem {
   id: number;
   quantity: number;
 }
 
-interface CartStore {
-  cartItems: CartItem[];
-  isCartOpen: boolean;
-  setIsCartOpen: (isOpen: boolean) => void;
-  getItemQuantity: (itemId: number) => number;
-  increaseCartQuantity: (itemId: number) => void;
-  decreaseCartQuantity: (itemId: number) => void;
-  removeFromCart: (itemId: number) => void;
-  clearCart: () => void;
+// Type for cart details (cart item + product details)
+export interface CartDetail {
+  id: number;
+  quantity: number;
+  productDetails: Product;
 }

@@ -1,20 +1,7 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { products } from "@/demo-data/data";
-import { Product } from "@/types/product";
-
-// Type for individual cart items
-interface CartItem {
-  id: number;
-  quantity: number;
-}
-
-// Type for cart details (cart item + product details)
-interface CartDetail {
-  id: number;
-  quantity: number;
-  productDetails: Product;
-}
+import { CartDetail, CartItem } from "@/types/cart";
 
 // Type for the Zustand store
 interface CartStore {
