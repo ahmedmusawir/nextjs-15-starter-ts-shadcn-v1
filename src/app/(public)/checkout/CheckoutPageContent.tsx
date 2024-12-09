@@ -36,8 +36,7 @@ const CheckoutPageContent = () => {
   const {
     cartDetails,
     subtotal,
-    increaseCartQuantity,
-    decreaseCartQuantity,
+    setCartItems,
     removeFromCart,
     isLoading,
     setIsCartOpen,
@@ -54,12 +53,12 @@ const CheckoutPageContent = () => {
   const shipping = 5.0;
   const total = subtotal() + taxes + shipping;
 
-  const handleQuantityChange = (productId: number, quantity: number) => {
-    if (quantity > 0) {
-      increaseCartQuantity(productId); // Add logic to handle increasing quantity dynamically
-    } else {
-      decreaseCartQuantity(productId); // Decrease the quantity dynamically
-    }
+  // Handle quantity changes
+  const handleQuantityChange = (itemId: number, newQuantity: number) => {
+    const updatedCartItems = cartDetails().map((item) =>
+      item.id === itemId ? { ...item, quantity: newQuantity } : item
+    );
+    setCartItems(updatedCartItems); // Update Zustand store
   };
 
   // Redirect to shop if cart is empty

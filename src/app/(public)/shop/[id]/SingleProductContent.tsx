@@ -2,7 +2,6 @@
 
 import Head from "next/head";
 import React from "react";
-// import { useProducts } from "@/contexts/ProductContext";
 import {
   CheckIcon,
   QuestionMarkCircleIcon,

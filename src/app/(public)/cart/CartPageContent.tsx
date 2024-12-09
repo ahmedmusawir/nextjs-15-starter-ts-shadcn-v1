@@ -201,14 +201,6 @@ const CartPageContent = () => {
                                   {n + 1}
                                 </option>
                               ))}
-                              {/* <option value={1}>1</option>
-                              <option value={2}>2</option>
-                              <option value={3}>3</option>
-                              <option value={4}>4</option>
-                              <option value={5}>5</option>
-                              <option value={6}>6</option>
-                              <option value={7}>7</option>
-                              <option value={8}>8</option> */}
                             </select>
                             <ChevronDownIcon
                               aria-hidden="true"
@@ -257,7 +249,7 @@ const CartPageContent = () => {
               </ul>
             </section>
           )}
-          {/* OORDER SUMMARY */}
+          {/* ORDER SUMMARY */}
           {cartDetails().length > 0 && (
             <section
               aria-labelledby="summary-heading"
@@ -274,7 +266,7 @@ const CartPageContent = () => {
                 <div className="flex items-center justify-between">
                   <dt className="text-sm text-gray-600">Subtotal</dt>
                   <dd className="text-sm font-medium text-gray-900">
-                    {subtotal()}
+                    ${subtotal()}
                   </dd>
                 </div>
                 <div className="flex items-center justify-between border-t border-gray-200 pt-4">
@@ -318,7 +310,7 @@ const CartPageContent = () => {
                     Order total
                   </dt>
                   <dd className="text-base font-medium text-gray-900">
-                    {(subtotal() + 5.0 + 8.32).toFixed(2)}
+                    ${(subtotal() + 5.0 + 8.32).toFixed(2)}
                   </dd>
                 </div>
               </dl>

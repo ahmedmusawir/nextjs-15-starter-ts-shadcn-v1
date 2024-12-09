@@ -20,7 +20,7 @@ export const products = [
     id: 2,
     name: "Lobster Dinner",
     color: "Fine Dining",
-    price: "$65.99",
+    price: "$100",
     inStock: true,
     leadTime: "7 days",
     description:
